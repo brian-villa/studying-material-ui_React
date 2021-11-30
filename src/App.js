@@ -1,25 +1,22 @@
-import React from "react"
-import { Button } from "@material-ui/core";
-import TextField from '@material-ui/core/TextField';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom'
 
+import Home from "./pages/Home"
 
-function App() {
-  return (
-    <>  
-         <TextField
-          required
-          id="outlined-required"
-          label="Required"
-          defaultValue="Hello World">
-              
-          </TextField>
-        <Button variant="contained" color="primary">
-            Hello World
-        </Button>
+const App =() => {
+  return (  
+    <Router>
+      <Switch>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
 
-       
-
-    </>
+  
   )
 }
 
