@@ -33,8 +33,7 @@ const Customers = () => {
     }, [])
 
     return (
-        <div>
-            <h1>Customers</h1>
+        <>
             <Grid container>
                 {
                     customers.map(item => (
@@ -45,13 +44,13 @@ const Customers = () => {
                                 email={item.email}
                                 avatar={item.avatar}
                                 className={classes.card}
-                            />
+                                />
                         </Grid>
                     ))
                 }
             </Grid>
             
-        </div>
+        </>
     )
 }
 

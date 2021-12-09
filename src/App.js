@@ -6,7 +6,9 @@ import {
 
 import Home from "./pages/Home"
 import Customers from "./pages/Customers"
+
 import TemplateDefault from "./templates/Default"
+import TemplatePage from "./templates/Page"
 
 const App =() => {
   return ( 
@@ -14,10 +16,10 @@ const App =() => {
       <Router>
         <Switch>
           <Route path="/customers">
-            <Customers />
+            <TemplatePage title="Clientes" Component={Customers} />
           </Route>
           <Route path="/">
-            <Home />
+            <TemplatePage title="Página Inicial" Component={Home}/>
           </Route>
         </Switch>
       </Router>
