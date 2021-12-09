@@ -8,12 +8,11 @@ const useStyles = makeStyles(() => ({
         padding: "10px 0",
        
     }
-  }))
+}))
 
   
 
 const Page = ({ title, Component }) => {
-    const classes = useStyles()
 
     return (
         <>
