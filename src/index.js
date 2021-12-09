@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createTheme, ThemeProvider } from '@material-ui/core/styles'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { deepPurple, red } from "@material-ui/core/colors"
 
 import App from './App'

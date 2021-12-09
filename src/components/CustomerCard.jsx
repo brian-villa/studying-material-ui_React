@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { styled } from '@material-ui/styles'
+import { makeStyles } from '@material-ui/core'
+import classNames from "classnames"
 
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
@@ -13,26 +14,25 @@ import FavoriteIcon from '@material-ui/icons/Favorite'
 import ShareIcon from '@material-ui/icons/Share'
 
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
+
+const useStyles = makeStyles ((theme) => ({
+  root: {
+    maxWidth: 345,
+  },
 }))
+
 
 const CustomerCard = ({
     name,
     lastname,
     email,
     avatar,
+    className,
 }) => {
-  
+  const classes = useStyles()
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card className={classNames(className, classes.root)}>
       <CardHeader
         avatar={
           <Avatar aria-label="costumer-avatar" src={avatar}>
