@@ -1,5 +1,7 @@
 import axios from "axios"
-import { useState } from 'react'
+import { useParams } from "react-router-dom"
+
+import { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
 import TextField from '@material-ui/core/TextField'
@@ -14,8 +16,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const Register = () => {
+const Edit = () => {
     const classes = useStyles()
+    const { id } = useParams()
 
     const [form, setForm] = useState({
         name: {
@@ -29,9 +32,26 @@ const Register = () => {
     })
 
     const [openToasty, setOpenToasty] = useState(false)
-
     const [isLoading, setIsLoading] = useState(false)
 
+
+    useEffect(() => {
+        axios.get(`https://reqres.in/api/users/${id}`)
+            .then(response => {
+                const { data } = response.data
+
+                setForm({
+                    name: {
+                        value: data.first_name,
+                        error: false,
+                    },
+                    job: {
+                        value: data.job,
+                        error: false,
+                    },
+                })
+            })
+    }, [])
 
     const handleInputChange = (e) => {
         const { name, value } = e.target
@@ -77,7 +97,7 @@ const Register = () => {
             return setForm(newFormState)
         }
 
-        axios.post("https://reqres.in/api/users", {
+        axios.put(`https://reqres.in/api/users/${id}`, {
             name: form.name.value,
             job: form.job.value,
         }).then((response) => {
@@ -114,14 +134,14 @@ const Register = () => {
             <div className={classes.wrapper}>
                 <Button variant="contained" size="medium" color="primary" onClick={handleRegisterButton} disabled={isLoading} postion="relative">
                     {
-                        isLoading ? <LinearIndeterminate value="progress" /> : "Cadastrar"
+                        isLoading ? <LinearIndeterminate value="progress" /> : "Salvar Alterações"
                     }
                 </Button>
             </div>
             <Toasty 
             open={openToasty} 
             severity="success" 
-            text="Cadastro Realizado com Sucesso"
+            text="Registro Atualizado com Sucesso"
             onClose={() => setOpenToasty(false)}
             />
             
@@ -132,4 +152,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default Edit
