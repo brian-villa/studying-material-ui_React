@@ -6,6 +6,8 @@ import { deepPurple, red } from "@material-ui/core/colors"
 import App from './App'
 import "./index.css"
 
+import { AuthProvider } from './state/auth'
+
 
 const theme = createTheme({
   palette: {
@@ -21,7 +23,9 @@ const theme = createTheme({
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-    <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

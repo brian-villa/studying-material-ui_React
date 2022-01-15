@@ -1,10 +1,6 @@
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/styles'
 
-
-
-
-
 //JSS
 const useStyles = makeStyles(() => ({
     container: {
